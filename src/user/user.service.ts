@@ -7,14 +7,13 @@ import { EntityManager, EntityRepository, wrap } from '@mikro-orm/mysql';
 
 @Injectable()
 export class UserService {
-
-  private readonly logger = new Logger(UserService.name)
+  private readonly logger = new Logger(UserService.name);
 
   constructor(
     @InjectRepository(User)
     private readonly userRepository: EntityRepository<User>,
     private readonly em: EntityManager,
-  ) { }
+  ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     const user = this.userRepository.create(createUserDto);
@@ -31,8 +30,7 @@ export class UserService {
   async findOne(id: string): Promise<User> {
     const user = await this.userRepository.findOne({ id });
 
-    if (!user)
-      throw new NotFoundException(`User #${id} not found`);
+    if (!user) throw new NotFoundException(`User #${id} not found`);
 
     return user;
   }

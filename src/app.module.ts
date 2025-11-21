@@ -12,9 +12,9 @@ import { UserModule } from './user/user.module';
       isGlobal: true,
     }),
     MikroOrmModule.forRoot(config),
-    UserModule
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
