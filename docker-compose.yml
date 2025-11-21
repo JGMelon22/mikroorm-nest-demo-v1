@@ -8,3 +8,30 @@ services:
       NODE_ENV: production
     ports:
       - "3000:3000"
+    depends_on:
+      - mysql_db
+    restart: unless-stopped
+    networks:
+      - nestjs-network
+
+  mysql_db:
+    image: mysql:8.4.6
+    container_name: mysql-nestjs
+    hostname: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: Melon@123
+      MYSQL_DATABASE: mikro_orm_users
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - nestjs-network
+
+networks:
+  nestjs-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
