@@ -4,16 +4,16 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { User } from './entities/user.entity';
 import { EntityManager, EntityRepository, wrap } from '@mikro-orm/mysql';
+import { PaginatedResponse } from 'src/common/interfaces/paginated-response.interface';
 
 @Injectable()
 export class UserService {
-  // private readonly logger = new Logger(UserService.name);
 
   constructor(
     @InjectRepository(User)
     private readonly userRepository: EntityRepository<User>,
     private readonly em: EntityManager,
-  ) {}
+  ) { }
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     const user = this.userRepository.create(createUserDto);
@@ -22,9 +22,22 @@ export class UserService {
     return user;
   }
 
-  async findAll(): Promise<User[]> {
-    const users = await this.userRepository.findAll();
-    return users;
+  async findAll(page: number = 1, pageSize: number = 10): Promise<PaginatedResponse<User>> {
+    const [items, total] = await this.userRepository.findAndCount(
+      {},
+      {
+        limit: pageSize,
+        offset: (page - 1) * pageSize,
+      },
+    );
+
+    return {
+      items,
+      total,
+      page,
+      pageSize,
+      totalPages: Math.ceil(total / pageSize),
+    };
   }
 
   async findOne(id: string): Promise<User> {

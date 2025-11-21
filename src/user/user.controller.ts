@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -15,14 +16,16 @@ import {
   ApiBody,
   ApiOperation,
   ApiParam,
+  ApiQuery,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { PaginatedResponse } from 'src/common/interfaces/paginated-response.interface';
 
 @ApiTags('Users')
 @Controller('/user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Post()
   @Post()
@@ -42,19 +45,24 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  @Get()
+@Get()
   @ApiOperation({
     summary: 'List all users',
     description: 'Returns a list of all registered users.',
   })
+  @ApiQuery({ name: 'page', required: false, description: 'Page number', example: 1 })
+  @ApiQuery({ name: 'pageSize', required: false, description: 'Number of items per page', example: 10 })
   @ApiResponse({
     status: 200,
     description: 'List of users successfully returned.',
     type: User,
-    isArray: true
+    isArray: true,
   })
-  async findAll(): Promise<User[]> {
-    return await this.userService.findAll();
+  async findAll(
+    @Query('page') page: number = 1,
+    @Query('pageSize') pageSize: number = 10,
+  ): Promise<PaginatedResponse<User>> {
+    return await this.userService.findAll(+page, +pageSize);
   }
 
   @Get(':id')

@@ -70,8 +70,10 @@ There are two possible ways: locally or via Docker
 ### 📚 References
 - [Documentation | NestJS](https://docs.nestjs.com/) \
 - [NestJS e Swagger: Automatize a geração de documentação para sua API](https://consolelog.com.br/nestjs-swagger-automatizar-geracao-documentacao-api/) \
-- [MikroORM (Core)](https://mikro-orm.io/docs/guide) — A beautiful, simple API for interacting with your database that takes full advantage of TypeScript's type system.
-- [MikroORM (NestJS)](https://mikro-orm.io/docs/usage-with-nestjs) — Integration guide for using MikroORM with NestJS applications.
-- [MikroORM (Configuration)](https://mikro-orm.io/docs/configuration) — How to configure MikroORM in your project.
-- [MikroORM (Migrations)](https://mikro-orm.io/docs/migrations) — Managing database migrations with MikroORM.
-- [MikroORM CLI](https://mikro-orm.io/docs/cli) — Official CLI for MikroORM, used for running migrations and other tasks.
+- [MikroORM (Core)](https://mikro-orm.io/docs/guide) — A beautiful, simple API for interacting with your database that takes full advantage of TypeScript's type system.  
+- [MikroORM (NestJS)](https://mikro-orm.io/docs/usage-with-nestjs) — Integration guide for using MikroORM with NestJS applications.  
+- [MikroORM (Configuration)](https://mikro-orm.io/docs/configuration) — How to configure MikroORM in your project.  
+- [MikroORM (Migrations)](https://mikro-orm.io/docs/migrations) — Managing database migrations with MikroORM.  
+- [MikroORM CLI](https://mikro-orm.io/docs/cli) — Official CLI for MikroORM, used for running migrations and other tasks.  
+- [MikroORM (Advanced Guide)](https://mikro-orm.io/docs/guide/advanced) — Advanced concepts and patterns for working with MikroORM.  
+- [MikroORM Cursor API](https://mikro-orm.io/api/core/class/Cursor) — Documentation for MikroORM's Cursor class, used for efficient iteration over query results.
