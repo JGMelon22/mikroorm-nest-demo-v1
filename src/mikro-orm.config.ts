@@ -17,6 +17,7 @@ const config: Options = {
         allOrNothing: true,
         emit: 'ts'
     },
+    debug: true,
     extensions: [Migrator]
 }
 

@@ -1,10 +1,11 @@
 import { Entity, PrimaryKey, Property, Unique } from "@mikro-orm/core";
+import { v4 } from "uuid";
 
 @Entity({tableName: 'users'})
 export class User {
 
     @PrimaryKey()
-    id: string
+    id: string = v4();
 
     @Property({length: 100})
     name: string
