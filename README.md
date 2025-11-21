@@ -36,14 +36,23 @@ There are two possible ways: locally or via Docker
 
 3. Configure the database credentials in the `.env` file to match your MySQL instance
 
-4. Start the application using the Nest CLI:
+4. Create a new migration:
+   ```bash
+   npx mikro-orm migration:create
+   ```
+5. Run migrations:
+   ```bash
+   npx mikro-orm migration:up
+   ```
+
+6. Start the application using the Nest CLI:
    ```bash
    npm run start:dev
    ```
 
-5. Access the Swagger UI in your browser: `http://localhost:3000/api`
+7. Access the Swagger UI in your browser: `http://localhost:3000/api`
 
-#### B) Via Docker (WIP)
+#### B) Via Docker 
 1. Clone the current repository:
    ```bash
    git clone git@github.com:JGMelon22/SampleNestJS.git
@@ -55,7 +64,18 @@ There are two possible ways: locally or via Docker
    ```bash
    docker compose up --build
    ```
-4. Access the Swagger UI in your browser: `http://localhost:3000/api`
+
+4. Create a new migration inside the container:
+   ```bash
+   docker compose exec nestjs-app npx mikro-orm migration:create
+   ```
+
+5. Run migrations inside the container:
+   ```bash
+   docker compose exec nestjs-app npx mikro-orm migration:up
+   ```
+
+6. Access the Swagger UI in your browser: `http://localhost:3000/api`
 
 ### 🧩 Dependencies
 - [`mikro-orm/core`](https://mikro-orm.io/) — A beautiful, simple API for interacting with your database that takes full advantage of TypeScript's type system.
