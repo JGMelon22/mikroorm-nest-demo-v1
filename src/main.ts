@@ -1,15 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { ConsoleLogger } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    logger: ['log', 'error', 'warn'],
-    // logger: new ConsoleLogger({
-    //   prefix: 'MyApp',
-    //   json: true,
-    // }),
+    logger: ['log', 'error', 'warn']
   });
 
   const config = new DocumentBuilder()

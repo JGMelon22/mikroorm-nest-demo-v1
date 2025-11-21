@@ -19,8 +19,8 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 
-@ApiTags('UserController')
-@Controller('user')
+@ApiTags('Users')
+@Controller('/user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -50,7 +50,8 @@ export class UserController {
   @ApiResponse({
     status: 200,
     description: 'List of users successfully returned.',
-    type: [User],
+    type: User,
+    isArray: true
   })
   async findAll(): Promise<User[]> {
     return await this.userService.findAll();

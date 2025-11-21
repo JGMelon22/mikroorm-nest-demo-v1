@@ -7,7 +7,7 @@ import { EntityManager, EntityRepository, wrap } from '@mikro-orm/mysql';
 
 @Injectable()
 export class UserService {
-  private readonly logger = new Logger(UserService.name);
+  // private readonly logger = new Logger(UserService.name);
 
   constructor(
     @InjectRepository(User)
