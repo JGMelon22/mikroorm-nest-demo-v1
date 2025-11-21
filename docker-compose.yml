@@ -1,0 +1,10 @@
+services:
+  nestjs-app:
+    container_name: nest-docker-postgres
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
