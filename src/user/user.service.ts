@@ -3,7 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { User } from './entities/user.entity';
-import { EntityManager, EntityRepository, wrap } from '@mikro-orm/mysql';
+import { EntityManager, EntityRepository } from '@mikro-orm/mysql';
 import { PaginatedResponse } from 'src/common/interfaces/paginated-response.interface';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class UserService {
     @InjectRepository(User)
     private readonly userRepository: EntityRepository<User>,
     private readonly em: EntityManager,
-  ) { }
+  ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     const user = this.userRepository.create(createUserDto);
