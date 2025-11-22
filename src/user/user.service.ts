@@ -12,7 +12,7 @@ export class UserService {
     @InjectRepository(User)
     private readonly userRepository: EntityRepository<User>,
     private readonly em: EntityManager,
-  ) {}
+  ) { }
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     const user = this.userRepository.create(createUserDto);
@@ -53,7 +53,7 @@ export class UserService {
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     const user = await this.findOne(id);
 
-    wrap(user).assign(updateUserDto);
+    this.userRepository.assign(user, updateUserDto);
     await this.em.flush();
 
     return user;
