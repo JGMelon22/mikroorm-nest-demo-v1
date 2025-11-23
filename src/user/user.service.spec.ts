@@ -354,10 +354,12 @@ describe('UserService', () => {
     it('should throw NotFoundException when user not found', async () => {
       userRepository.findOne.mockResolvedValue(null);
 
-      await expect(service.findOne('999')).rejects.toThrow(NotFoundException);
-      await expect(service.findOne('999')).rejects.toThrow(
-        'User #999 not found',
-      );
+      await expect(
+        service.findOne('7732f28b-567d-458d-a264-9cf8955bdedf'),
+      ).rejects.toThrow(NotFoundException);
+      await expect(
+        service.findOne('7732f28b-567d-458d-a264-9cf8955bdedf'),
+      ).rejects.toThrow('User #7732f28b-567d-458d-a264-9cf8955bdedf not found');
     });
   });
 
@@ -425,7 +427,9 @@ describe('UserService', () => {
     it('should throw NotFoundException when removing non-existent user', async () => {
       userRepository.findOne.mockResolvedValue(null);
 
-      await expect(service.remove('999')).rejects.toThrow(NotFoundException);
+      await expect(
+        service.remove('7d2dd3db-6bf3-4ee2-8c58-65f2ebcdd9b5'),
+      ).rejects.toThrow(NotFoundException);
       expect(entityManager.removeAndFlush).not.toHaveBeenCalled();
     });
   });
